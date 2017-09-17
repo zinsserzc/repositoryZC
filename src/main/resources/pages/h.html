@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>11</title>
+</head>
+<body>
+
+  <button id = take onclick=d() width = "100px" height = "100px"> </button>
+
+
+  <script scripttype = "javascript">
+    function d(){
+      var ws = new WebSocket("ws://localhost:8080/web");
+      ws.onpen = function(eve){
+        console.log("opne..");
+      }
+
+      ws.onclose = function(eve){
+        console.log("close..");
+      }
+
+      ws.onmessage = function(eve){
+        console.log("message..");
+      }
+    }
+      function c(){
+        console.log("11")
+      }
+  </script>
+
+</body>
+</html>
