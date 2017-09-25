@@ -1,32 +1,48 @@
 <!doctype html>
 <html>
 <head>
+  <script type="text/javascript" src="./js/HZRecorder.js"></script>
 <meta charset="utf-8">
 <title>11</title>
 </head>
 <body>
 
-  <button id = take onclick=d() width = "100px" height = "100px"> </button>
+  <audio controls autoplay></audio>
+  <button id = start onclick=startRecording() style = "width : 100px; height : 100px">开</button>
+  <button id = get onclick=obtainRecord() style = "width : 100px; height : 100px">获</button>
+  <button id = close onclick=stopRecord() style = "width : 100px; height : 100px">关</button>
+  <button id = play onclick=playRecord() style = "width : 100px; height : 100px">放</button>
 
 
   <script scripttype = "javascript">
-    function d(){
-      var ws = new WebSocket("ws://localhost:8080/web");
-      ws.onpen = function(eve){
-        console.log("opne..");
-      }
 
-      ws.onclose = function(eve){
-        console.log("close..");
-      }
+    /* 音频 */
+    var recorder;
+    var audio = document.querySelector('audio');
 
-      ws.onmessage = function(eve){
-        console.log("message..");
-      }
+    function startRecording() {
+        HZRecorder.get(function (rec) {
+            recorder = rec;
+            recorder.start();
+        });
     }
-      function c(){
-        console.log("11")
-      }
+
+    function obtainRecord(){
+        var record = recorder.getBlob();
+        //debugger;
+    };
+
+    function stopRecord(){
+        recorder.stop();
+    };
+
+    function playRecord(){
+        recorder.play(audio);
+    };
+
+    function getMedia(){
+
+    }
   </script>
 
 </body>
